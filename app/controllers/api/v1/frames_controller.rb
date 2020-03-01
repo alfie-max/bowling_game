@@ -7,7 +7,7 @@ class API::V1::FramesController < ApplicationController
     render json: @game.frames.create!(frame_params), status: :created
   end
 
-  # PUT /api/v1/games/:game_id/frames/:number
+  # PUT /api/v1/games/:game_id/frames/:frame_number
   def update
     @frame.update!(frame_params)
     render json: @frame.reload, status: :ok
@@ -20,7 +20,7 @@ class API::V1::FramesController < ApplicationController
   end
 
   def set_frame
-    @frame ||= @game.frames.find_by!(number: params[:number])
+    @frame ||= @game.frames.find_by!(frame_number: params[:frame_number])
   end
 
   def frame_params

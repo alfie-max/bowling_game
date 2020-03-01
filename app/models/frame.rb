@@ -3,7 +3,7 @@ class Frame < ApplicationRecord
 
   before_validation :set_frame_number, on: :create
 
-  validates :number,
+  validates :frame_number,
             presence: true,
             numericality: { only_integer: true,
                             greater_than_or_equal_to: 1,
@@ -28,6 +28,6 @@ class Frame < ApplicationRecord
   private
 
   def set_frame_number
-    self.number = game.frames.count.next
+    self.frame_number = game.frames.count.next
   end
 end
