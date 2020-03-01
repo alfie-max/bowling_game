@@ -28,6 +28,16 @@ class Frame < ApplicationRecord
   validate :total_frame_score
   validate :third_ball_allowed
 
+  after_save :recalculate_score
+
+  def strike?
+    first_ball_score.eql?(10)
+  end
+
+  def spare?
+    !strike? && this_frame_score.eql?(10)
+  end
+
   def last_frame?
     frame_number.eql?(10)
   end
@@ -52,5 +62,9 @@ class Frame < ApplicationRecord
     if !last_frame? && third_ball_score != 0
       errors.add(:third_ball_score, :not_allowed)
     end
+  end
+
+  def recalculate_score
+    ScoreCalculator.process(game.frames)
   end
 end
