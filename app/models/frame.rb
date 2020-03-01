@@ -1,6 +1,8 @@
 class Frame < ApplicationRecord
   belongs_to :game
 
+  before_validation :set_frame_number, on: :create
+
   validates :number,
             presence: true,
             numericality: { only_integer: true,
@@ -22,4 +24,10 @@ class Frame < ApplicationRecord
             numericality: { only_integer: true,
                             greater_than_or_equal_to: 0,
                             less_than_or_equal_to: 300 }
+
+  private
+
+  def set_frame_number
+    self.number = game.frames.count.next
+  end
 end

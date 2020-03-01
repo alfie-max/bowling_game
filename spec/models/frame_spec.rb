@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Frame, type: :model do
+  subject { create(:frame) }
+
   it { is_expected.to belong_to(:game) }
 
   it { is_expected.to validate_presence_of(:number) }
@@ -23,4 +25,6 @@ RSpec.describe Frame, type: :model do
   it { is_expected.to validate_numericality_of(:score).only_integer }
   it { is_expected.to validate_numericality_of(:score).is_greater_than_or_equal_to(0) }
   it { is_expected.to validate_numericality_of(:score).is_less_than_or_equal_to(300) }
+
+  it { is_expected.to callback(:set_frame_number).before(:validation).on(:create) }
 end
