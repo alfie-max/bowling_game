@@ -3,17 +3,17 @@ class API::V1::GamesController < ApplicationController
 
   # GET /api/v1/games
   def index
-    render json: Game.last(50), status: :ok
+    json_response(Game.all)
   end
 
   # POST /api/v1/games
   def create
-    render json: Game.create!(game_params), status: :created
+    json_response(Game.create!(game_params), :created)
   end
 
   # GET /api/v1/games/:id
   def show
-    render json: @game.scoreboard, status: :ok
+    json_response(@game.scoreboard)
   end
 
   # PUT /api/v1/games/:id

@@ -4,13 +4,13 @@ class API::V1::FramesController < ApplicationController
 
   # POST /api/v1/games/:game_id/frames
   def create
-    render json: @game.frames.create!(frame_params), status: :created
+    json_response(@game.frames.create!(frame_params), :created)
   end
 
   # PUT /api/v1/games/:game_id/frames/:frame_number
   def update
     @frame.update!(frame_params)
-    render json: @frame.reload, status: :ok
+    json_response(@frame.reload)
   end
 
   private
