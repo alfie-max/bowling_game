@@ -13,7 +13,7 @@ class API::V1::GamesController < ApplicationController
 
   # GET /api/v1/games/:id
   def show
-    render json: scoreboard, status: :ok
+    render json: @game.scoreboard, status: :ok
   end
 
   # PUT /api/v1/games/:id
@@ -36,15 +36,5 @@ class API::V1::GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:player_name)
-  end
-
-  def scoreboard
-    {
-      id: @game.id,
-      player_name: @game.player_name,
-      score: {
-        total_score: @game.score
-      }
-    }
   end
 end

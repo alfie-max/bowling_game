@@ -46,6 +46,16 @@ class Frame < ApplicationRecord
     first_ball_score + second_ball_score + third_ball_score
   end
 
+  def scorecard
+    Hash.new.tap do |card|
+      card[:frame_number] = frame_number
+      card[:score] = score
+      card[:first_ball_score] = first_ball_score
+      card[:second_ball_score] = second_ball_score
+      card[:third_ball_score] = third_ball_score if last_frame?
+    end
+  end
+
   private
 
   def set_frame_number
