@@ -1,0 +1,26 @@
+require 'rails_helper'
+
+RSpec.describe Frame, type: :model do
+  it { is_expected.to belong_to(:game) }
+
+  it { is_expected.to validate_presence_of(:number) }
+  it { is_expected.to validate_numericality_of(:number).only_integer }
+  it { is_expected.to validate_numericality_of(:number).is_greater_than_or_equal_to(1) }
+  it { is_expected.to validate_numericality_of(:number).is_less_than_or_equal_to(10) }
+
+  it { is_expected.to validate_numericality_of(:first_ball_score).only_integer }
+  it { is_expected.to validate_numericality_of(:first_ball_score).is_greater_than_or_equal_to(0) }
+  it { is_expected.to validate_numericality_of(:first_ball_score).is_less_than_or_equal_to(10) }
+
+  it { is_expected.to validate_numericality_of(:second_ball_score).only_integer }
+  it { is_expected.to validate_numericality_of(:second_ball_score).is_greater_than_or_equal_to(0) }
+  it { is_expected.to validate_numericality_of(:second_ball_score).is_less_than_or_equal_to(10) }
+
+  it { is_expected.to validate_numericality_of(:third_ball_score).only_integer }
+  it { is_expected.to validate_numericality_of(:third_ball_score).is_greater_than_or_equal_to(0) }
+  it { is_expected.to validate_numericality_of(:third_ball_score).is_less_than_or_equal_to(10) }
+
+  it { is_expected.to validate_numericality_of(:score).only_integer }
+  it { is_expected.to validate_numericality_of(:score).is_greater_than_or_equal_to(0) }
+  it { is_expected.to validate_numericality_of(:score).is_less_than_or_equal_to(300) }
+end
