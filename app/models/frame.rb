@@ -38,6 +38,10 @@ class Frame < ApplicationRecord
     !strike? && this_frame_score.eql?(10)
   end
 
+  def first_two_ball_spare?
+    (first_ball_score + second_ball_score).eql?(10)
+  end
+
   def last_frame?
     frame_number.eql?(10)
   end
@@ -69,7 +73,12 @@ class Frame < ApplicationRecord
   end
 
   def third_ball_allowed
-    if !last_frame? && third_ball_score != 0
+    return true if third_ball_score.zero?
+    return true if last_frame? && (strike? || first_two_ball_spare?)
+
+    if last_frame? && !(strike? || first_two_ball_spare?)
+      errors.add(:third_ball_score, :invalid_play)
+    else last_frame?
       errors.add(:third_ball_score, :not_allowed)
     end
   end

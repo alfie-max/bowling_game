@@ -8,3 +8,4 @@ en:
               invalid_score: can't be higher than 10 for frames 1 to 9
             third_ball_score:
               not_allowed: unavailable for frames 1 to 9
+              invalid_play: invalid play as it was not a strike or a spare
