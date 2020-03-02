@@ -26,6 +26,7 @@ RSpec.describe Frame, type: :model do
   it { is_expected.to validate_numericality_of(:score).is_less_than_or_equal_to(300) }
 
   it { is_expected.to callback(:set_frame_number).before(:validation).on(:create) }
+  it { is_expected.to callback(:recalculate_score).after(:save) }
 
   describe 'frame is invalid if game over' do
     let(:frame) { build :frame, :game_over }
