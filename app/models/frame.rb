@@ -6,8 +6,7 @@ class Frame < ApplicationRecord
   validates :frame_number,
             presence: true,
             numericality: { only_integer: true,
-                            greater_than_or_equal_to: 1,
-                            less_than_or_equal_to: 10 }
+                            greater_than_or_equal_to: 1 }
   validates :first_ball_score,
             numericality: { only_integer: true,
                             greater_than_or_equal_to: 0,
@@ -27,6 +26,7 @@ class Frame < ApplicationRecord
 
   validate :total_frame_score
   validate :third_ball_allowed
+  validate :game_over
 
   after_save :recalculate_score
 
@@ -81,6 +81,10 @@ class Frame < ApplicationRecord
     else last_frame?
       errors.add(:third_ball_score, :not_allowed)
     end
+  end
+
+  def game_over
+    errors.add(:frame_number, :game_over) if frame_number.to_i > 10
   end
 
   def recalculate_score

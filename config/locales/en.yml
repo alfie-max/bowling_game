@@ -9,3 +9,5 @@ en:
             third_ball_score:
               not_allowed: unavailable for frames 1 to 9
               invalid_play: invalid play as it was not a strike or a spare
+            frame_number:
+              game_over: invalid play, Game Over!
