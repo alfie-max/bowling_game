@@ -7,8 +7,30 @@ FactoryBot.define do
     third_ball_score { 0 }
     score { 1 }
 
+    trait :non_last_frame do
+      frame_number { 4 }
+    end
+
+    trait :last_frame do
+      frame_number { 10 }
+    end
+
     trait :game_over do
       frame_number { 11 }
+    end
+
+    trait :normal do
+      first_ball_score { 2 }
+      second_ball_score { 7 }
+    end
+
+    trait :strike do
+      first_ball_score { 10 }
+    end
+
+    trait :spare do
+      first_ball_score { 6 }
+      second_ball_score { 4 }
     end
   end
 end
