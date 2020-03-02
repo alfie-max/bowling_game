@@ -95,4 +95,12 @@ RSpec.describe Frame, type: :model do
       expect(frame.this_frame_score).to eq(this_frame_score)
     end
   end
+
+  describe 'unless there is a strike or spare in the last frame' do
+    let(:frame) { build :frame, :invalid_tenth_frame_play }
+
+    it 'third ball play on last frame not allowed' do
+      expect(frame).to be_invalid
+    end
+  end
 end

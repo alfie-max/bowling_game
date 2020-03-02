@@ -32,5 +32,12 @@ FactoryBot.define do
       first_ball_score { 6 }
       second_ball_score { 4 }
     end
+
+    trait :invalid_tenth_frame_play do
+      frame_number { 10 }
+      first_ball_score { 3 }
+      second_ball_score { 2 }
+      third_ball_score { 9 }
+    end
   end
 end
