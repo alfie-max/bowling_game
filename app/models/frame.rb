@@ -63,7 +63,7 @@ class Frame < ApplicationRecord
   private
 
   def set_frame_number
-    self.frame_number = game.frames.count.next
+    self.frame_number = game.frames.count.next if frame_number.blank?
   end
 
   def total_frame_score

@@ -6,5 +6,9 @@ FactoryBot.define do
     second_ball_score { 1 }
     third_ball_score { 0 }
     score { 1 }
+
+    trait :game_over do
+      frame_number { 11 }
+    end
   end
 end
