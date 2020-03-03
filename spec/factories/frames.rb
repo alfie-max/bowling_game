@@ -2,10 +2,10 @@ FactoryBot.define do
   factory :frame do
     game
     frame_number { 1 }
-    first_ball_score { 1 }
-    second_ball_score { 1 }
+    first_ball_score { 0 }
+    second_ball_score { 0 }
     third_ball_score { 0 }
-    score { 1 }
+    score { 0 }
 
     trait :non_last_frame do
       frame_number { 4 }
@@ -29,6 +29,12 @@ FactoryBot.define do
     end
 
     trait :spare do
+      first_ball_score { 6 }
+      second_ball_score { 4 }
+    end
+
+    trait :ninth_frame_spare do
+      frame_number { 9 }
       first_ball_score { 6 }
       second_ball_score { 4 }
     end

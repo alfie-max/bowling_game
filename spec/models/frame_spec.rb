@@ -37,11 +37,15 @@ RSpec.describe Frame, type: :model do
   end
 
   describe '#strike?' do
-    let(:frame) { build :frame, :strike }
+    let(:frame) { create :frame, :strike }
     let(:frame2) { build :frame, :normal }
 
     it 'returns true for a strike frame' do
       expect(frame.strike?).to be_truthy
+    end
+
+    it 'has calculated score' do
+      expect(frame.reload.scorecard[:score]).to eq(10)
     end
 
     it 'returns false for a normal frame' do
@@ -50,11 +54,15 @@ RSpec.describe Frame, type: :model do
   end
 
   describe '#spare?' do
-    let(:frame) { build :frame, :spare }
+    let(:frame) { create :frame, :spare }
     let(:frame2) { build :frame, :normal }
 
     it 'returns true for a spare frame' do
       expect(frame.spare?).to be_truthy
+    end
+
+    it 'has calculated score' do
+      expect(frame.reload.scorecard[:score]).to eq(10)
     end
 
     it 'returns false for a normal frame' do
