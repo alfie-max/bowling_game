@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_01_113942) do
+ActiveRecord::Schema.define(version: 2020_03_03_082341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "frames", force: :cascade do |t|
     t.bigint "game_id", null: false
-    t.integer "frame_number", default: 1
+    t.integer "frame_number"
     t.integer "first_ball_score", default: 0
     t.integer "second_ball_score", default: 0
     t.integer "third_ball_score", default: 0
