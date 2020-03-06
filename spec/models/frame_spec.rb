@@ -44,10 +44,6 @@ RSpec.describe Frame, type: :model do
       expect(frame.strike?).to be_truthy
     end
 
-    it 'has calculated score' do
-      expect(frame.reload.scorecard[:score]).to eq(10)
-    end
-
     it 'returns false for a normal frame' do
       expect(frame2.strike?).to be_falsey
     end
@@ -59,10 +55,6 @@ RSpec.describe Frame, type: :model do
 
     it 'returns true for a spare frame' do
       expect(frame.spare?).to be_truthy
-    end
-
-    it 'has calculated score' do
-      expect(frame.reload.scorecard[:score]).to eq(10)
     end
 
     it 'returns false for a normal frame' do
@@ -110,57 +102,6 @@ RSpec.describe Frame, type: :model do
 
     it 'third ball play on last frame not allowed' do
       expect(frame).to be_invalid
-    end
-  end
-
-  describe '#scorecard' do
-    let(:frame) do
-      create(
-        :frame,
-        first_ball_score: 3,
-        second_ball_score: 7,
-        third_ball_score: 0
-      )
-    end
-
-    let(:frame2) do
-      create(
-        :frame,
-        frame_number: 10,
-        first_ball_score: 3,
-        second_ball_score: 7,
-        third_ball_score: 6
-      )
-    end
-
-    it 'is a hash' do
-      expect(frame.scorecard).to be_kind_of Hash
-    end
-
-    it 'has required keys' do
-      expect(frame.scorecard).to have_key(:frame_number)
-      expect(frame.scorecard).to have_key(:score)
-      expect(frame.scorecard).to have_key(:first_ball_score)
-      expect(frame.scorecard).to have_key(:second_ball_score)
-    end
-
-    it 'does not have third ball score' do
-      expect(frame.scorecard).not_to have_key(:third_ball_score)
-    end
-
-    it 'has expected values' do
-      expect(frame.scorecard[:frame_number]).to eq(1)
-      expect(frame.scorecard[:first_ball_score]).to eq(3)
-      expect(frame.scorecard[:second_ball_score]).to eq(7)
-    end
-
-    it 'has calculated score' do
-      expect(frame.reload.scorecard[:score]).to eq(10)
-    end
-
-    it 'does have third ball score for last frame' do
-      expect(frame2.scorecard).to have_key(:third_ball_score)
-      expect(frame2.scorecard[:third_ball_score]).to eq(6)
     end
   end
 end

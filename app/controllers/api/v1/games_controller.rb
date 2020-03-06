@@ -13,7 +13,6 @@ class API::V1::GamesController < ApplicationController
 
   # GET /api/v1/games/:id
   def show
-    json_response(@game.scoreboard)
   end
 
   # PUT /api/v1/games/:id
